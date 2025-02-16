@@ -24,35 +24,55 @@ h2 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Limit the width of the search input and button */
+/* Center the form’s children */
 form {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
 }
 
-form input[type="text"],
-form button {
+/* Label remains left-aligned within the form */
+form label {
+    width: 100%;
     max-width: 400px;
+    text-align: left;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Style for the text input */
+form input[type="text"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
     margin: 0 auto;
 }
 
-input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
+form input[type="text"]:focus {
+    border-color: #007bff;
 }
 
-button {
-    padding: 10px;
+/* Style for the button - using auto width with fixed padding */
+form button {
+    width: auto;
+    padding: 10px 30px;
     font-size: 16px;
     background: #333;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin: 0 auto;
+    transition: background 0.3s ease-in-out;
 }
 
-button:hover {
+form button:hover {
     background: #f39c12;
 }
 
