@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Results for "{{ query }}"</title>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+  <!-- Use .results-container for the results page -->
+  <div class="results-container">
+    <h1>Results for "{{ query }}"</h1>
+    <div class="results-columns">
+      <!-- Amazon Results Column -->
+      <div class="results-column">
+        <h2>Amazon Results</h2>
+        {% if amazon_products %}
+          {% for product in amazon_products %}
+            <div class="product-card">
+              <img src="{{ product.img_link }}" alt="{{ product.title }}">
+              <div class="product-info">
+                <h3>{{ product.title }}</h3>
+                <p><strong>Price:</strong> {{ product.price }}</p>
+                <p><strong>Rating:</strong> {{ product.rating }}</p>
+                <p><a href="{{ product.prod_link }}" target="_blank">View on Amazon</a></p>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No Amazon products found.</p>
+        {% endif %}
+      </div>
+      <!-- Flipkart Results Column -->
+      <div class="results-column">
+        <h2>Flipkart Results</h2>
+        {% if flipkart_products %}
+          {% for product in flipkart_products %}
+            <div class="product-card">
+              <img src="{{ product.img_link }}" alt="{{ product.title }}">
+              <div class="product-info">
+                <h3>{{ product.title }}</h3>
+                <p><strong>Price:</strong> {{ product.price }}</p>
+                <p><strong>Rating:</strong> {{ product.rating }}</p>
+                <p><a href="{{ product.prod_link }}" target="_blank">View on Flipkart</a></p>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No Flipkart products found.</p>
+        {% endif %}
+      </div>
+    </div>
+    <a class="back-link" href="/">Back to Search</a>
+  </div>
+</body>
+</html>
