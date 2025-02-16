@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import requests
@@ -27,7 +30,11 @@ def scrape_amazon(query):
     driver = webdriver.Chrome(service=s, options=chrome_options)
 
     driver.get(url)
-    driver.implicitly_wait(5)
+    WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "div[data-component-type='s-search-result']"))
+    )
+    # driver.implicitly_wait(5)
 
     soup = BeautifulSoup(driver.page_source, "html.parser")
     driver.quit()
